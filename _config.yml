@@ -1,5 +1,10 @@
 title: Bree B.
-description: Bookmark this to keep an eye on my project updates!
+tagline: I put communities on the map.
+description: >-
+  Breanna Hollinshed — Geospatial Science student turning spatial data into
+  tools that connect people to community, Country, and the decisions that
+  shape both.
+author: Breanna Hollinshed
 baseurl: ""
 
 nav:
@@ -11,6 +16,10 @@ nav:
     url: /Projects/
   - name: Contact
     url: /Contact/
+
+social:
+  github: https://github.com/Bree-B
+  linkedin: https://www.linkedin.com/in/breanna-hollinshed-005b6330b
 
 exclude:
   - README.md

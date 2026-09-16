@@ -2,15 +2,18 @@
 layout: default
 title: Contact
 permalink: /Contact/
-description: Ways to get in touch with Bree.
+description: >-
+  Ways to get in touch with Breanna Hollinshed about community and
+  environmental GIS projects.
 ---
 
 <section class="hero">
   <p class="eyebrow">Say hello</p>
   <h1>Get in touch</h1>
   <p class="lead">
-    I'm always happy to hear about new projects, collaborations, or a good
-    question. Here's where to find me.
+    I'm keen to connect with people working on community and environmental GIS
+    projects. Open to new projects and opportunities — reach out if you'd like
+    to chat, collaborate, or just say hello.
   </p>
 </section>
 
@@ -18,16 +21,12 @@ description: Ways to get in touch with Bree.
   <h2>Where to reach me</h2>
   <ul class="contact-list">
     <li>
-      <span class="label">Email</span>
-      <a href="mailto:you@example.com">you@example.com</a>
-    </li>
-    <li>
       <span class="label">GitHub</span>
-      <a href="https://github.com/Bree-B">@Bree-B</a>
+      <a href="{{ site.social.github }}">@Bree-B</a>
     </li>
     <li>
       <span class="label">LinkedIn</span>
-      <a href="#">Add your profile link</a>
+      <a href="{{ site.social.linkedin }}">Breanna Hollinshed</a>
     </li>
   </ul>
 </section>
@@ -35,9 +34,9 @@ description: Ways to get in touch with Bree.
 <section class="section">
   <h2>Before you write</h2>
   <p>
-    A short note here sets expectations — how quickly you usually reply, what
-    kinds of enquiries you're open to, and anything you'd like included in a
-    first message.
+    A short note about the project, who it's for, and where it's up to gives me
+    the most to work with. Community and environmental mapping work is what I'm
+    most interested in hearing about.
   </p>
   <p class="muted">
     I usually reply within a few days.

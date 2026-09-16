@@ -1,0 +1,21 @@
+{%- comment -%}
+  Renders a project figure only once the image file actually exists in the
+  repository, so the page stays clean while artwork is still being added.
+
+  Usage:
+    {% include project-figure.html src="/assets/images/projects/name.png"
+                                   alt="Descriptive alt text"
+                                   caption="Optional caption" %}
+{%- endcomment -%}
+{%- assign figure_path = include.src -%}
+{%- assign figure_file = site.static_files | where: "path", figure_path | first -%}
+{%- if figure_file -%}
+<figure class="project-figure">
+  <a href="{{ figure_path | relative_url }}">
+    <img src="{{ figure_path | relative_url }}" alt="{{ include.alt }}" loading="lazy" decoding="async">
+  </a>
+  {%- if include.caption %}
+  <figcaption>{{ include.caption }}</figcaption>
+  {%- endif %}
+</figure>
+{%- endif -%}
