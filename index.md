@@ -52,7 +52,7 @@ description: >-
     <li>
       <h3>Building</h3>
       <span class="when">Now</span>
-      <p>My digital portfolio and online presence.</p>
+      <p>My digital portfolio and online presence. (Here!)</p>
     </li>
     <li>
       <h3>Learning</h3>
