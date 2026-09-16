@@ -1,3 +1,16 @@
-theme: jekyll-theme-minimal
-title: Bree's homepage
+title: Bree B.
 description: Bookmark this to keep an eye on my project updates!
+baseurl: ""
+
+nav:
+  - name: Home
+    url: /
+  - name: About
+    url: /About/
+  - name: Projects
+    url: /Projects/
+  - name: Contact
+    url: /Contact/
+
+exclude:
+  - README.md
