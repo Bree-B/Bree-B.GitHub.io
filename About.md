@@ -1,11 +1,11 @@
 ---
 layout: page
-title: "Contact"
-permalink: /Contact
+title: "About Me"
+permalink: /About
 ---
 
 [Home](/) | [About Me](/About) | [Projects](/Projects) | [Contact](/Contact)
 
-## Contact
+## About Me
 
-You can contact me here!
+A little bit about me goes here!
