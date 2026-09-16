@@ -12,7 +12,7 @@ description: >-
   <h1>A little about me</h1>
   <p class="lead">
     I'm Breanna, a Geospatial Science student who believes maps shouldn't just
-    sit in a technical report — they should help everyday people understand why
+    sit in a technical report, they should help everyday people understand why
     decisions get made the way they do, and stay connected to community and
     Country along the way.
   </p>
