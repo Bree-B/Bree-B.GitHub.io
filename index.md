@@ -1,14 +1,19 @@
 ---
 layout: default
 title: Home
+description: >-
+  Breanna Hollinshed — Geospatial Science student turning spatial data into
+  tools that connect people to community, Country, and the decisions that
+  shape both.
 ---
 
 <section class="hero">
   <p class="eyebrow">Hello, I'm Bree</p>
-  <h1>I build thoughtful things for the web.</h1>
+  <h1>I put communities on the map.</h1>
   <p class="lead">
-    Welcome to my corner of the internet — a running record of the projects
-    I'm building, the things I'm learning, and how to reach me.
+    A geospatial science student turning spatial data into tools that connect
+    people to community, Country, and the decisions that shape both. A running
+    record of the projects I'm building, what I'm learning, and how to reach me.
   </p>
   <div class="hero-actions">
     <a class="btn btn-primary" href="{{ '/Projects/' | relative_url }}">View my projects</a>
@@ -24,12 +29,12 @@ title: Home
     <a class="card" href="{{ '/About/' | relative_url }}">
       <span class="card-meta">01</span>
       <h3>About Me</h3>
-      <p>Who I am, what I'm into, and the tools I reach for most.</p>
+      <p>How I came to GIS, the work behind it, and the tools I reach for most.</p>
     </a>
     <a class="card" href="{{ '/Projects/' | relative_url }}">
       <span class="card-meta">02</span>
       <h3>Projects</h3>
-      <p>Selected work, side projects, and experiments in progress.</p>
+      <p>Flood modelling, land suitability, and other work grounded in real places.</p>
     </a>
     <a class="card" href="{{ '/Contact/' | relative_url }}">
       <span class="card-meta">03</span>
@@ -47,17 +52,20 @@ title: Home
     <li>
       <h3>Building</h3>
       <span class="when">Now</span>
-      <p>A short line about the project taking up most of your time right now.</p>
+      <p>My digital portfolio and online presence.</p>
     </li>
     <li>
       <h3>Learning</h3>
       <span class="when">This year</span>
-      <p>A language, framework, or subject you're digging into at the moment.</p>
+      <p>Advanced GIS skills, Python, and agentic AI.</p>
     </li>
     <li>
       <h3>Reading</h3>
       <span class="when">This month</span>
-      <p>A book, blog, or paper worth mentioning — swap this out any time.</p>
+      <p>
+        Working through the <a href="https://docs.qgis.org">QGIS documentation</a>
+        and <a href="https://docs.github.com">GitHub Docs</a>.
+      </p>
     </li>
   </ul>
 </section>
