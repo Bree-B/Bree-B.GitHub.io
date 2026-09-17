@@ -10,3 +10,6 @@ _site/
 
 # macOS
 .DS_Store
+
+# Local bundle lockfile (GitHub Pages uses its own pinned toolchain)
+Gemfile.lock

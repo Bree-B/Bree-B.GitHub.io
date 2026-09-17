@@ -16,7 +16,7 @@ description: >-
     record of the projects I'm building, what I'm learning, and how to reach me.
   </p>
   <div class="hero-actions">
-    <a class="btn btn-primary" href="{{ '/Projects/' | relative_url }}">View my projects</a>
+    <a class="btn btn-primary" href="{{ '/GISProjects/' | relative_url }}">View my projects</a>
     <a class="btn" href="{{ '/Contact/' | relative_url }}">Get in touch</a>
   </div>
 </section>
@@ -31,7 +31,7 @@ description: >-
       <h3>About Me</h3>
       <p>How I came to GIS, the work behind it, and the tools I reach for most.</p>
     </a>
-    <a class="card" href="{{ '/Projects/' | relative_url }}">
+    <a class="card" href="{{ '/GISProjects/' | relative_url }}">
       <span class="card-meta">02</span>
       <h3>Projects</h3>
       <p>Flood modelling, land suitability, and other work grounded in real places.</p>

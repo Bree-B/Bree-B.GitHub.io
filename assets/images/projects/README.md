@@ -13,5 +13,5 @@ added, and the images appear automatically on the next build.
 | `quandong-study-site.png` | Quandong orchard MCDA | Study-area extent near Booleroo Centre and Melrose |
 
 PNG or JPG both work, but keep the `.png` names above unless you also update the
-`src` values in `Projects.md`. Web-sized exports (roughly 1600 px on the long
+`src` values in `GISProjects.md`. Web-sized exports (roughly 1600 px on the long
 edge) keep page loads quick.
