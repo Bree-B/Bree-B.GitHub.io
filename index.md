@@ -9,7 +9,7 @@ description: >-
 
 <section class="hero">
   <p class="eyebrow">Hello, I'm Bree</p>
-  <h1>I put communities on the map.</h1>
+  <h1>Mapping Country, connecting community</h1>
   <p class="lead">
     A geospatial science student turning spatial data into tools that connect
     people to community, Country, and the decisions that shape both. A running
