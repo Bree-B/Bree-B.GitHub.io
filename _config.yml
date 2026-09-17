@@ -20,8 +20,8 @@ nav:
 # Privacy-friendly visitor counting. Leave `provider` commented out and the
 # site loads no analytics script at all. See the Analytics section of README.md.
 analytics:
-  # provider: goatcounter
-  # site: bree-b
+  provider: goatcounter
+  site: bree-b
 
 social:
   github: https://github.com/Bree-B
