@@ -12,7 +12,7 @@ description: >-
   <h1>Mapping Country, connecting community</h1>
   <p class="lead">
     A geospatial science student turning spatial data into tools that connect
-    people to community, Country, and the decisions that shape both. A running
+    people to Community, Country, and the decisions that shape both. A running
     record of the projects I'm building, what I'm learning, and how to reach me.
   </p>
   <div class="hero-actions">
