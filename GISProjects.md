@@ -1,7 +1,7 @@
 ---
 layout: default
 title: GIS Projects
-permalink: /GIS Projects/
+permalink: /GISProjects/
 description: >-
   Geospatial work by Breanna Hollinshed - flood modelling on the Onkaparinga
   River and multi-criteria land suitability analysis for a quandong orchard.

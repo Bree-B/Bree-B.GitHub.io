@@ -88,7 +88,7 @@ description: >-
     working on my next piece as a mixed-media artist under Bunya Art.
   </p>
   <div class="hero-actions">
-    <a class="btn btn-primary" href="{{ '/Projects/' | relative_url }}">See what I've built</a>
+    <a class="btn btn-primary" href="{{ '/GISProjects/' | relative_url }}">See what I've built</a>
     <a class="btn" href="{{ '/Contact/' | relative_url }}">Say hello</a>
   </div>
 </section>
