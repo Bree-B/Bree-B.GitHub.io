@@ -84,8 +84,7 @@ description: >-
 <section class="section">
   <h2>Beyond the keyboard</h2>
   <p>
-    Proud dog mum to three. Off-screen, I support community groups — including
-    an Aboriginal sporting association on the Eyre Peninsula — and I'm usually
+    Proud dog mum to three. Off-screen, I support community groups and usually
     working on my next piece as a mixed-media artist under Bunya Art.
   </p>
   <div class="hero-actions">
