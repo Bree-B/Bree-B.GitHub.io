@@ -3,7 +3,7 @@ layout: default
 title: Projects
 permalink: /Projects/
 description: >-
-  Geospatial work by Breanna Hollinshed — flood modelling on the Onkaparinga
+  Geospatial work by Breanna Hollinshed - flood modelling on the Onkaparinga
   River and multi-criteria land suitability analysis for a quandong orchard.
 ---
 
