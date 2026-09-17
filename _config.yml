@@ -12,8 +12,8 @@ nav:
     url: /
   - name: About
     url: /About/
-  - name: Projects
-    url: /Projects/
+  - name: GIS Projects
+    url: /GISProjects/
   - name: Contact
     url: /Contact/
 
