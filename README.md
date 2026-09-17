@@ -18,6 +18,7 @@ GitHub Pages at <https://bree-b.github.io>.
 - [Everyday commands](#everyday-commands)
 - [Editing the site](#editing-the-site)
 - [How deploys work](#how-deploys-work)
+- [Analytics](#analytics)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -33,6 +34,7 @@ GitHub Pages at <https://bree-b.github.io>.
 | `_config.yml` | Site title, description, nav links, social links |
 | `_layouts/default.html` | Page shell — header, nav, footer |
 | `_includes/project-figure.html` | Renders a project image only once the file exists |
+| `_includes/analytics.html` | Optional visitor counting — off until configured |
 | `assets/css/style.scss` | Design tokens and all site styles |
 | `assets/images/projects/` | Project map exports — see the README in that folder |
 | `Gemfile` | Ruby gems needed to preview the site locally |
@@ -242,6 +244,58 @@ Two things worth knowing:
   standard Markdown, Liquid and Sass, so the two produce the same output. If
   you ever add a plugin, check it against
   [GitHub's supported list](https://pages.github.com/versions/) first.
+
+---
+
+## Analytics
+
+The site can count visitors without cookies, without a consent banner, and
+without loading anything at all until you opt in. `_includes/analytics.html`
+emits nothing unless `analytics.provider` is set in `_config.yml`, and it is
+skipped entirely during local previews (`bundle exec jekyll serve`), so only
+real traffic to <https://bree-b.github.io> is counted.
+
+### Recommended: GoatCounter
+
+[GoatCounter](https://www.goatcounter.com) is free for personal sites, stores
+no cookies or personal data, and the script is about 3&nbsp;KB.
+
+1. Sign up at <https://www.goatcounter.com> and pick a site code — for example
+   `bree-b`, which gives you a dashboard at `https://bree-b.goatcounter.com`.
+2. Uncomment the two analytics lines in `_config.yml`:
+
+   ```yaml
+   analytics:
+     provider: goatcounter
+     site: bree-b
+   ```
+
+3. Commit and push. GitHub Pages rebuilds, and counts start appearing in the
+   GoatCounter dashboard within a minute or two.
+
+You get page views, referrers, browsers, screen sizes, and rough country-level
+locations — no individual visitors are identified or tracked between visits.
+
+### Other supported providers
+
+Swap `provider` and its settings if you would rather use something else:
+
+| Provider | `_config.yml` keys |
+| --- | --- |
+| `goatcounter` | `site` — your `<site>.goatcounter.com` code |
+| `plausible` | `domain` — the domain registered in Plausible |
+| `umami` | `src` — your instance's script URL, and `website_id` |
+| `cloudflare` | `token` — the Web Analytics beacon token |
+
+[Plausible](https://plausible.io) is paid. [Umami](https://umami.is) is
+open source and free to self-host. [Cloudflare Web
+Analytics](https://www.cloudflare.com/web-analytics/) is free but reports
+best when Cloudflare also proxies the domain.
+
+### Turning it off
+
+Comment out `provider` in `_config.yml` and push. The site goes back to
+loading no analytics script whatsoever.
 
 ---
 
