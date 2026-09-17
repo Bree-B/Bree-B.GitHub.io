@@ -1,0 +1,37 @@
+{%- assign a = include.item -%}
+{%- assign st = a.status | default: "available" | downcase -%}
+{%- case st -%}
+  {%- when "sold" -%}{%- assign st_label = "Sold" -%}
+  {%- when "reserved" -%}{%- assign st_label = "Reserved" -%}
+  {%- when "commission" -%}{%- assign st_label = "Commission" -%}
+  {%- when "print" -%}{%- assign st_label = "Prints" -%}
+  {%- else -%}{%- assign st_label = "Available" -%}
+{%- endcase -%}
+<a class="art-card spot{% if st == 'sold' %} art-card--sold{% endif %}"
+   href="{{ a.url | relative_url }}"
+   data-tilt
+   data-status="{{ st }}"
+   data-category="{{ a.category | default: 'original' | downcase }}">
+  <span class="art-card__frame">
+    <span class="badge badge--{{ st }} art-card__badge">{{ st_label }}</span>
+    {% include art-image.html src=a.image alt=a.alt title=a.title %}
+  </span>
+  <span class="art-card__body">
+    <span class="art-card__title">{{ a.title }}</span>
+    <span class="art-card__medium">
+      {{ a.medium }}{% if a.dimensions %} &middot; {{ a.dimensions }}{% endif %}
+    </span>
+    <span class="art-card__foot">
+      <span class="art-card__price">
+        {%- if st == "sold" -%}
+          <span class="muted">Sold</span>
+        {%- elsif a.price -%}
+          {{ site.data.studio.symbol }}{{ a.price }} <small>{{ site.data.studio.currency }}</small>
+        {%- else -%}
+          <span class="muted">Price on enquiry</span>
+        {%- endif -%}
+      </span>
+      <span class="art-card__cta">View <span aria-hidden="true">&rarr;</span></span>
+    </span>
+  </span>
+</a>

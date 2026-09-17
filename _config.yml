@@ -1,25 +1,80 @@
+# ---------------------------------------------------------------------------
+# Site
+# ---------------------------------------------------------------------------
 title: Breanna Hollinshed
+short_title: Bree
 tagline: Mapping Country, connecting community
 description: >-
-  Breanna Hollinshed — Geospatial Science student turning spatial data into
-  tools that connect people to community, Country, and the decisions that
-  shape both.
+  Breanna Hollinshed — Geospatial Science student and mixed-media artist.
+  Spatial data turned into tools that connect people to community, Country,
+  and the decisions that shape both. Portfolio, journal, and original artwork.
 author: Breanna Hollinshed
+lang: en
+
+# Your live address. Used for canonical links, the RSS feed and social cards.
+url: "https://bree-b.github.io"
 baseurl: ""
 
+# ---------------------------------------------------------------------------
+# Navigation
+# ---------------------------------------------------------------------------
 nav:
-  - name: Home
-    url: /
   - name: About
     url: /About/
   - name: Projects
     url: /Projects/
+  - name: Art
+    url: /Art/
+    match: /art/
+  - name: Blog
+    url: /Blog/
+    match: /blog/
   - name: Contact
     url: /Contact/
 
 social:
   github: https://github.com/Bree-B
   linkedin: https://www.linkedin.com/in/breanna-hollinshed-005b6330b
+  # Add more and they appear in the footer automatically. Leave blank to hide.
+  instagram: ""
+
+# ---------------------------------------------------------------------------
+# Collections
+# ---------------------------------------------------------------------------
+collections:
+  art:
+    output: true
+    permalink: /art/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: art
+    values:
+      layout: art
+
+permalink: /blog/:title/
+excerpt_separator: "<!--more-->"
+timezone: Australia/Adelaide
+
+# ---------------------------------------------------------------------------
+# Build
+# ---------------------------------------------------------------------------
+sass:
+  style: compressed
 
 exclude:
   - README.md
+  - assets/images/art/README.md
+  - assets/images/posts/README.md
+  - assets/images/projects/README.md
+  - Gemfile
+  - Gemfile.lock
+  - docs/
+  - vendor/
+  - .pages.yml

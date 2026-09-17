@@ -1,0 +1,26 @@
+# ---------------------------------------------------------------------------
+# Studio + store settings
+# These live here (rather than in _config.yml) so the CMS can edit them safely.
+# Referenced in templates as site.data.studio.*
+# ---------------------------------------------------------------------------
+
+name: Bunya Art
+
+blurb: >-
+  Original mixed-media work — ochre, ink and layered paper. Each piece is one
+  of one, made and finished by hand.
+
+currency: AUD
+symbol: "$"
+
+# Where "Enquire" buttons point when a piece has no checkout link of its own.
+enquiry_url: /Contact/
+
+shipping_note: >-
+  Posted from Adelaide, South Australia. Shipping is quoted per piece — ask
+  when you enquire.
+
+# A small note at the top of the Art page. Clear this once your real work is up.
+sample_notice: >-
+  These listings are starter samples — swap them for your own pieces in the
+  CMS, then clear this notice under Site settings.

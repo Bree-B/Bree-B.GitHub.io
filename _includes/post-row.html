@@ -1,0 +1,11 @@
+{%- assign p = include.post -%}
+{%- assign words = p.content | number_of_words -%}
+{%- assign mins = words | divided_by: 210 | plus: 1 -%}
+<a class="post-row" href="{{ p.url | relative_url }}">
+  <time class="post-row__date" datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%d %b %Y" }}</time>
+  <span>
+    <span class="post-row__title">{{ p.title }}</span>
+    <p class="post-row__excerpt">{{ p.blurb | default: p.excerpt | strip_html | normalize_whitespace | truncate: 165 }}</p>
+  </span>
+  <span class="post-row__read">{{ mins }} min read</span>
+</a>

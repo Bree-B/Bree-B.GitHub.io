@@ -1,0 +1,110 @@
+---
+layout: default
+---
+{%- assign st = page.status | default: "available" | downcase -%}
+{%- case st -%}
+  {%- when "sold" -%}{%- assign st_label = "Sold" -%}
+  {%- when "reserved" -%}{%- assign st_label = "Reserved" -%}
+  {%- when "commission" -%}{%- assign st_label = "Commission" -%}
+  {%- when "print" -%}{%- assign st_label = "Prints" -%}
+  {%- else -%}{%- assign st_label = "Available" -%}
+{%- endcase -%}
+
+<div class="wrap">
+  <p class="section--tight" style="margin-top:2rem">
+    <a class="arrow-link" href="{{ '/Art/' | relative_url }}"><span aria-hidden="true">&larr;</span> Back to the studio</a>
+  </p>
+
+  <article class="art-detail">
+    <div data-reveal="scale">
+      <div class="art-detail__stage" data-art-stage>
+        {% include art-image.html src=page.image alt=page.alt title=page.title loading="eager" zoom=true %}
+      </div>
+
+      {%- assign gallery_size = page.gallery | size -%}
+      {%- if gallery_size > 0 %}
+      <div class="art-thumbs" data-art-thumbs>
+        <button type="button" data-src="{{ page.image | relative_url }}" aria-current="true" aria-label="Main view">
+          {% include art-image.html src=page.image alt=page.alt title=page.title %}
+        </button>
+        {%- for shot in page.gallery %}
+        <button type="button" data-src="{{ shot | relative_url }}" aria-label="Detail {{ forloop.index }}">
+          {% include art-image.html src=shot alt=page.title title=page.title %}
+        </button>
+        {%- endfor %}
+      </div>
+      {%- endif %}
+    </div>
+
+    <div class="art-detail__aside" data-reveal="right">
+      <span class="badge badge--{{ st }}">{{ st_label }}</span>
+      <h1>{{ page.title }}</h1>
+      {%- if page.blurb %}<p class="lead">{{ page.blurb }}</p>{% endif %}
+
+      <p class="art-price">
+        {%- if st == "sold" -%}
+          <span class="muted">No longer available</span>
+        {%- elsif page.price -%}
+          {{ site.data.studio.symbol }}{{ page.price }}<small>{{ site.data.studio.currency }}</small>
+        {%- else -%}
+          <span class="muted">Price on enquiry</span>
+        {%- endif -%}
+      </p>
+
+      <ul class="spec-list">
+        {%- if page.medium %}<li><span class="k">Medium</span><span class="v">{{ page.medium }}</span></li>{% endif %}
+        {%- if page.dimensions %}<li><span class="k">Size</span><span class="v">{{ page.dimensions }}</span></li>{% endif %}
+        {%- if page.year %}<li><span class="k">Year</span><span class="v">{{ page.year }}</span></li>{% endif %}
+        {%- if page.edition %}<li><span class="k">Edition</span><span class="v">{{ page.edition }}</span></li>{% endif %}
+        {%- if page.framed %}<li><span class="k">Framing</span><span class="v">{{ page.framed }}</span></li>{% endif %}
+      </ul>
+
+      <div class="btn-row" style="margin-top:0">
+        {%- if st == "sold" %}
+        <a class="btn btn-primary" href="{{ '/Art/' | relative_url }}">See available work</a>
+        {%- elsif page.buy_url and page.buy_url != "" %}
+        <a class="btn btn-primary" href="{{ page.buy_url }}" rel="noopener">
+          Buy this piece
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn" href="{{ site.data.studio.enquiry_url | relative_url }}">Ask a question</a>
+        {%- else %}
+        <a class="btn btn-primary" href="{{ site.data.studio.enquiry_url | relative_url }}">
+          Enquire about this piece
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        {%- endif %}
+      </div>
+
+      {%- if site.data.studio.shipping_note and st != "sold" %}
+      <p class="faint section--tight" style="font-size:.86rem;margin-top:1.25rem">{{ site.data.studio.shipping_note | strip_newlines }}</p>
+      {%- endif %}
+    </div>
+  </article>
+
+  {%- assign story = content | strip -%}
+  {%- if story != "" %}
+  <section class="art-story wrap--narrow" style="padding-inline:0" data-reveal>
+    <h2>About this piece</h2>
+    <div class="prose">{{ content }}</div>
+  </section>
+  {%- endif %}
+
+  {%- assign others = site.art | where_exp: "item", "item.url != page.url" | sort: "order" -%}
+  {%- if others.size > 0 %}
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Keep looking</p>
+        <h2>More from the studio</h2>
+      </div>
+      <a class="arrow-link" href="{{ '/Art/' | relative_url }}">All work <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <div class="art-grid" data-stagger data-reveal>
+      {%- for item in others limit: 3 %}
+        {% include art-card.html item=item %}
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
+</div>

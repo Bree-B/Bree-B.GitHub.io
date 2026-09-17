@@ -1,0 +1,59 @@
+---
+layout: default
+---
+{%- assign words = content | number_of_words -%}
+{%- assign mins = words | divided_by: 210 | plus: 1 -%}
+
+<article class="wrap wrap--narrow">
+  <header class="post-hero">
+    <p class="eyebrow">{{ page.category | default: "Journal" }}</p>
+    <h1 data-reveal>{{ page.title }}</h1>
+    <div class="post-hero__meta" data-reveal style="--reveal-delay:80ms">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+      <span aria-hidden="true">&middot;</span>
+      <span>{{ mins }} min read</span>
+      {%- if page.tags and page.tags.size > 0 %}
+      <span aria-hidden="true">&middot;</span>
+      <span>{{ page.tags | join: ", " }}</span>
+      {%- endif %}
+    </div>
+  </header>
+
+  {%- assign cover_file = site.static_files | where: "path", page.cover | first -%}
+  {%- if page.cover and cover_file %}
+  <figure class="post-cover" data-reveal="scale">
+    <img src="{{ page.cover | relative_url }}" alt="{{ page.cover_alt | default: page.title | escape }}" data-zoom data-caption="{{ page.cover_alt | default: page.title | escape }}">
+  </figure>
+  {%- endif %}
+
+  <div class="prose prose--lede section--tight" data-reveal>
+    {{ content }}
+  </div>
+
+  <footer class="post-foot">
+    {%- if page.tags and page.tags.size > 0 %}
+    <ul class="tags">
+      {%- for tag in page.tags %}
+      <li>{{ tag }}</li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+
+    <nav class="pager" aria-label="More posts">
+      {%- if page.previous %}
+      <div class="pager__side">
+        <span class="pager__label">Previous</span>
+        <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
+      </div>
+      {%- endif %}
+      {%- if page.next %}
+      <div class="pager__side pager__side--next">
+        <span class="pager__label">Next</span>
+        <a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
+      </div>
+      {%- endif %}
+    </nav>
+
+    <p class="section--tight"><a class="arrow-link" href="{{ '/Blog/' | relative_url }}"><span aria-hidden="true">&larr;</span> All posts</a></p>
+  </footer>
+</article>

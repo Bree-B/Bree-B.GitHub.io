@@ -1,0 +1,22 @@
+{%- comment -%}
+  Shows the artwork photograph when the file is actually in the repository, and
+  a generated gradient panel with the piece's initials when it is not — so a
+  listing added in the CMS before its photo is uploaded still looks deliberate
+  instead of broken.
+
+  Usage: {% include art-image.html src=item.image alt="..." title=item.title %}
+{%- endcomment -%}
+{%- assign art_file = site.static_files | where: "path", include.src | first -%}
+{%- if include.src and art_file -%}
+<img src="{{ include.src | relative_url }}"
+     alt="{{ include.alt | default: include.title | escape }}"
+     loading="{{ include.loading | default: 'lazy' }}"
+     decoding="async"
+     {% if include.zoom %}data-zoom data-caption="{{ include.title | escape }}"{% endif %}>
+{%- else -%}
+{%- assign art_words = include.title | default: "Artwork" | split: " " -%}
+{%- capture art_initials %}{{ art_words[0] | slice: 0, 1 }}{% if art_words[1] %}{{ art_words[1] | slice: 0, 1 }}{% endif %}{% endcapture -%}
+<span class="art-ph" role="img" aria-label="{{ include.title | default: 'Artwork' | escape }} — photograph coming soon">
+  <span class="art-ph__initials">{{ art_initials | upcase }}</span>
+</span>
+{%- endif -%}

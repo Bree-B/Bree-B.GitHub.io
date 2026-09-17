@@ -1,14 +1,22 @@
 # bree-b.github.io
 
-Personal portfolio site for Breanna Hollinshed — Geospatial Science student at
-Flinders University. Built with [Jekyll](https://jekyllrb.com) and served by
-GitHub Pages at <https://bree-b.github.io>.
+Personal site for Breanna Hollinshed — Geospatial Science student at Flinders
+University and mixed-media artist under Bunya Art. Portfolio, blog, and an art
+store, built with [Jekyll](https://jekyllrb.com) and served by GitHub Pages at
+<https://bree-b.github.io>.
+
+Everything is editable from a browser through a CMS — see
+[Editing with the CMS](#editing-with-the-cms).
 
 ---
 
 ## Contents
 
 - [Project structure](#project-structure)
+- [Editing with the CMS](#editing-with-the-cms)
+  - [Writing a blog post](#writing-a-blog-post)
+  - [Listing a piece of art](#listing-a-piece-of-art)
+  - [Taking payment](#taking-payment)
 - [Build guide for macOS](#build-guide-for-macos)
   - [1. Install the Xcode command line tools](#1-install-the-xcode-command-line-tools)
   - [2. Install Homebrew](#2-install-homebrew)
@@ -16,7 +24,7 @@ GitHub Pages at <https://bree-b.github.io>.
   - [4. Install the project's gems](#4-install-the-projects-gems)
   - [5. Preview the site](#5-preview-the-site)
 - [Everyday commands](#everyday-commands)
-- [Editing the site](#editing-the-site)
+- [Editing the site by hand](#editing-the-site-by-hand)
 - [How deploys work](#how-deploys-work)
 - [Troubleshooting](#troubleshooting)
 
@@ -26,17 +34,125 @@ GitHub Pages at <https://bree-b.github.io>.
 
 | Path | Purpose |
 | --- | --- |
-| `index.md` | Home — intro and what I'm currently working on |
+| `index.md` | Home — hero, studio preview, recent projects, latest posts |
 | `About.md` | Background, tools, and experience |
 | `Projects.md` | Selected geospatial work |
+| `Art.md` | The art store — lists everything in `_art/` |
+| `Blog.md` | Blog index — lists everything in `_posts/` |
 | `Contact.md` | Where to get in touch |
-| `_config.yml` | Site title, description, nav links, social links |
-| `_layouts/default.html` | Page shell — header, nav, footer |
-| `_includes/project-figure.html` | Renders a project image only once the file exists |
-| `assets/css/style.scss` | Design tokens and all site styles |
+| `404.html` | Shown for any address that doesn't exist |
+| `_posts/` | One Markdown file per published blog post |
+| `_drafts/` | Unpublished posts. Never built, so safe to leave half-finished |
+| `_art/` | One Markdown file per artwork listing |
+| `_data/studio.yml` | Studio name, currency, shipping note, store notices |
+| `_config.yml` | Site title, description, nav links, social links, collections |
+| `_layouts/` | Page shells — `default`, `page`, `post`, `art` |
+| `_includes/` | Reused fragments — header, footer, cards, lightbox, backdrop |
+| `_sass/` | The stylesheet, split into tokens, base, layout, components, pages, motion |
+| `assets/css/style.scss` | Pulls the `_sass/` partials together — the only file Jekyll compiles |
+| `assets/js/app.js` | All interaction: animations, filters, lightbox, theme toggle |
+| `assets/images/art/` | Artwork photographs — see the README in that folder |
+| `assets/images/posts/` | Images used inside blog posts |
 | `assets/images/projects/` | Project map exports — see the README in that folder |
+| `feed.xml` `sitemap.xml` `robots.txt` | Generated for readers and search engines |
+| `.pages.yml` | CMS configuration — what fields appear in the editor |
 | `Gemfile` | Ruby gems needed to preview the site locally |
 | `_site/` | Build output — generated, ignored by git, never edited by hand |
+
+---
+
+## Editing with the CMS
+
+There is nothing to install and nothing to host. The site uses
+[Pages CMS](https://pagescms.org), which reads the `.pages.yml` file in this
+repository and turns it into a visual editor.
+
+**First time:**
+
+1. Go to <https://app.pagescms.org> and sign in with GitHub.
+2. Grant it access to the `Bree-B/Bree-B.GitHub.io` repository.
+3. Pick the repository from the list.
+
+You'll see **Blog posts**, **Drafts**, **Artwork**, **Studio & store
+settings**, and the individual pages down the left-hand side. Saving anything
+writes a commit to this repository, and GitHub Pages rebuilds the live site a
+minute or so later.
+
+It works on a phone, which is the point — you can list a piece from the studio
+without opening a laptop.
+
+> Everything the CMS does, you can also do by editing files directly here on
+> GitHub or on your own machine. The CMS is a nicer front door, not a
+> different system.
+
+### Writing a blog post
+
+In the CMS: **Blog posts → Add entry**. Fill in the title, pick a date, write,
+and save.
+
+By hand: create `_posts/YYYY-MM-DD-some-title.md`:
+
+```markdown
+---
+title: "Reading a flood before it arrives"
+date: 2026-08-14
+tags: [gis, hydrology]
+blurb: "One or two sentences for the blog index and the RSS feed."
+---
+
+The opening paragraph.
+
+<!--more-->
+
+Everything after that marker is the rest of the post.
+```
+
+The filename date sets the address, so `2026-08-14-reading-a-flood-before-it-arrives.md`
+publishes at `/blog/reading-a-flood-before-it-arrives/`. Reading time is
+calculated for you.
+
+`_drafts/template-post.md` is a reference for the formatting the site
+supports — headings, quotes, code, images. Files in `_drafts/` are never
+published, so it's also the right place to park a half-written post.
+
+### Listing a piece of art
+
+In the CMS: **Artwork → Add entry**. The fields map to what shows on the page:
+
+| Field | What it does |
+| --- | --- |
+| Status | `available`, `sold`, `reserved`, `commission` or `print` — sets the badge and the button |
+| Category | `original`, `print` or `commission` — becomes a filter button on the Art page |
+| Sort order | Lower numbers come first |
+| Show on the home page | Puts the piece in the "From the studio" row |
+| Price | Numbers only. Leave it empty for "price on enquiry" |
+| Main photograph | Until this is set, the store shows a gradient panel with the piece's initials |
+| Checkout link | See below. Empty means the button reads "Enquire about this piece" |
+
+A piece that sells doesn't need deleting — set its status to `sold` and it
+stays up, greyed out, as a record of the work.
+
+### Taking payment
+
+The site is a set of static files, so it has no checkout of its own. Each
+listing instead carries a **checkout link**, and the "Buy this piece" button
+points at it. Any of these work:
+
+- A [Stripe Payment Link](https://stripe.com/docs/payment-links) — free to
+  create, one per piece, takes card payments directly.
+- An Etsy or Big Cartel listing, if you already sell there.
+- A PayPal.me or Square link.
+
+Leave the field empty and the button becomes **Enquire about this piece**,
+pointing at the Contact page — which is the right default for originals, where
+you'll want to quote postage anyway.
+
+Where those enquiries go, the currency, and the shipping note all live under
+**Studio & store settings** in the CMS (`_data/studio.yml` in the repository).
+
+> The Art page currently shows a notice saying the listings are starter
+> samples. Clear the **Notice on the Art page** field once your own work is up
+> and it disappears.
 
 ---
 
@@ -177,10 +293,13 @@ Run all of these from the repository folder.
 
 ---
 
-## Editing the site
+## Editing the site by hand
 
-**Page content** lives in the four Markdown files at the top level. Each
-starts with a YAML front matter block between `---` fences:
+Most day-to-day changes are easier in [the CMS](#editing-with-the-cms). This
+section is for the structural things it doesn't cover.
+
+**Page content** lives in the Markdown files at the top level. Each starts with
+a YAML front matter block between `---` fences:
 
 ```yaml
 ---
@@ -203,14 +322,31 @@ nav:
     url: /Whatever/
 ```
 
-**Colours, fonts and spacing** are all in `assets/css/style.scss`. The design
-tokens at the top (the `:root` block) drive the whole palette — change
-`--accent` there and it updates everywhere. Note the empty `---` fences at the
-very top of that file: they look odd, but they're what tells Jekyll to compile
-the file, so don't delete them.
+**Colours, fonts and spacing** live in `_sass/_tokens.scss`. The `:root` block
+drives the whole palette — change `--accent` there and it updates everywhere,
+in both themes. The rest of the stylesheet is split by job:
 
-**Project images** go in `assets/images/projects/`. See the README inside that
-folder for the naming convention.
+| File | Contains |
+| --- | --- |
+| `_sass/_tokens.scss` | Colours, fonts, radii, timings — light and dark |
+| `_sass/_base.scss` | Reset, typography, shared text utilities |
+| `_sass/_layout.scss` | Background, header, nav, sections, footer |
+| `_sass/_components.scss` | Buttons, cards, tags, badges, lightbox, filters |
+| `_sass/_pages.scss` | Hero, art store, blog, project and post layouts |
+| `_sass/_motion.scss` | Keyframes, scroll reveals, reduced-motion opt-outs |
+
+`assets/css/style.scss` just imports those in order. Note the front matter
+fences at the very top of it: they look odd, but they're what tells Jekyll to
+compile the file, so don't delete them.
+
+**Animations** are all in `assets/js/app.js`, one small function per feature,
+and every one of them checks `prefers-reduced-motion` first. If a visitor has
+asked their system to reduce motion, the contour map draws a single static
+frame, scroll reveals resolve immediately, and nothing drifts or tilts.
+
+**Project images** go in `assets/images/projects/`, artwork in
+`assets/images/art/`, post images in `assets/images/posts/`. See the README
+inside each folder.
 
 > Changes to `_config.yml` are the one exception to live reload — Jekyll only
 > reads that file at startup. Stop the server with `Ctrl+C` and start it again
@@ -239,9 +375,13 @@ Two things worth knowing:
   `.gitignore`.
 - **GitHub builds with its own pinned Jekyll**, which is a slightly older
   version than the one in the `Gemfile`. This site uses no plugins and only
-  standard Markdown, Liquid and Sass, so the two produce the same output. If
-  you ever add a plugin, check it against
+  standard Markdown, Liquid and Sass, so the two produce the same output. The
+  RSS feed and sitemap are written out by hand for that reason, rather than
+  leaning on `jekyll-feed` and `jekyll-sitemap`. If you ever do add a plugin,
+  check it against
   [GitHub's supported list](https://pages.github.com/versions/) first.
+- **Saving in the CMS is also a deploy.** It commits straight to the branch,
+  which kicks off the same build.
 
 ---
 
@@ -255,6 +395,9 @@ Two things worth knowing:
 | `Could not find gem 'jekyll'` | Run `bundle install` from inside the repository folder. |
 | `Address already in use - bind(2) for 127.0.0.1:4000` | Another Jekyll is still running. Close it, or use `--port 4001`. |
 | Edits don't show up | Hard refresh with `Cmd+Shift+R`. If you edited `_config.yml`, restart the server. |
-| Site looks unstyled | Check the empty `---` fences are still at the top of `assets/css/style.scss`. |
+| Site looks unstyled | Check the front matter fences are still at the top of `assets/css/style.scss`. |
+| A new post doesn't appear | Its filename must be `YYYY-MM-DD-title.md` and the date must not be in the future. |
+| An artwork shows initials instead of a photo | The file named in its `image:` field isn't in `assets/images/art/` yet. |
+| CMS says it can't find a configuration | `.pages.yml` must be on the branch you selected in Pages CMS. |
 | Builds locally but the live site is stale | Check the **Actions** tab for a failed `pages-build-deployment` run and read its log. |
 | Live site 404s and no build ever runs | Check **Settings → Pages** is set to deploy from `main` / `(root)`. If that's right and builds still never start, the account or repository may be flagged — contact [GitHub Support](https://support.github.com/contact). |

@@ -1,0 +1,46 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="eyebrow">Let's work together</p>
+        <h2>Got a map, a project, or a wall that needs filling?</h2>
+        <p class="muted">{{ site.data.studio.blurb | strip_newlines }}</p>
+        <a class="btn btn-primary" href="{{ '/Contact/' | relative_url }}">
+          Start a conversation
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul>
+          <li><a class="link-sweep" href="{{ '/' | relative_url }}">Home</a></li>
+          {%- for item in site.nav %}
+          <li><a class="link-sweep" href="{{ item.url | relative_url }}">{{ item.name }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Elsewhere</h3>
+        <ul>
+          {%- if site.social.github and site.social.github != "" %}
+          <li><a class="link-sweep" href="{{ site.social.github }}" rel="me noopener">GitHub</a></li>
+          {%- endif %}
+          {%- if site.social.linkedin and site.social.linkedin != "" %}
+          <li><a class="link-sweep" href="{{ site.social.linkedin }}" rel="me noopener">LinkedIn</a></li>
+          {%- endif %}
+          {%- if site.social.instagram and site.social.instagram != "" %}
+          <li><a class="link-sweep" href="{{ site.social.instagram }}" rel="me noopener">Instagram</a></li>
+          {%- endif %}
+          <li><a class="link-sweep" href="{{ '/feed.xml' | relative_url }}">RSS feed</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }} &middot; {{ site.data.studio.name }}</p>
+      <p>Built with Jekyll on GitHub Pages. Artwork and words are my own.</p>
+    </div>
+  </div>
+</footer>

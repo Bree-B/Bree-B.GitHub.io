@@ -1,0 +1,19 @@
+---
+permalink: /sitemap.xml
+layout: null
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {%- assign entries = site.pages | concat: site.posts | concat: site.art -%}
+  {%- for entry in entries -%}
+  {%- unless entry.sitemap == false or entry.url contains "404" %}
+  <url>
+    <loc>{{ entry.url | replace: "index.html", "" | absolute_url | xml_escape }}</loc>
+    {%- if entry.collection == "posts" %}
+    <lastmod>{{ entry.last_modified_at | default: entry.date | date_to_xmlschema }}</lastmod>
+    {%- endif %}
+  </url>
+  {%- endunless -%}
+  {%- endfor %}
+</urlset>

@@ -1,0 +1,310 @@
+# ---------------------------------------------------------------------------
+# CMS configuration — Pages CMS (https://pagescms.org)
+#
+# There is nothing to install or host. Go to https://app.pagescms.org, sign in
+# with GitHub, grant access to this repository, and everything below shows up
+# as a visual editor. Saving writes a commit, and GitHub Pages rebuilds the
+# site a minute or so later.
+#
+# Full field reference: https://pagescms.org/docs/configuration
+# ---------------------------------------------------------------------------
+
+media:
+  input: assets/images
+  output: /assets/images
+
+content:
+  # -------------------------------------------------------------------------
+  # Blog
+  # -------------------------------------------------------------------------
+  - name: posts
+    label: Blog posts
+    type: collection
+    path: _posts
+    filename: '{year}-{month}-{day}-{primary}.md'
+    icon: newspaper
+    view:
+      fields: [title, date, tags]
+      primary: title
+      sort: [date, title]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: blurb
+        label: Summary
+        type: text
+        description: One or two sentences for the blog index, search results and RSS.
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: cover
+        label: Cover image
+        type: image
+        description: Optional. Shown full width under the title.
+      - name: cover_alt
+        label: Cover image description
+        type: string
+        description: Describe the cover image for anyone who can't see it.
+      - name: body
+        label: Post
+        type: rich-text
+
+  - name: drafts
+    label: Drafts
+    type: collection
+    path: _drafts
+    filename: '{primary}.md'
+    icon: pencil
+    view:
+      fields: [title]
+      primary: title
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: blurb
+        label: Summary
+        type: text
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: cover
+        label: Cover image
+        type: image
+      - name: cover_alt
+        label: Cover image description
+        type: string
+      - name: body
+        label: Post
+        type: rich-text
+
+  # -------------------------------------------------------------------------
+  # Art store
+  # -------------------------------------------------------------------------
+  - name: art
+    label: Artwork
+    type: collection
+    path: _art
+    filename: '{primary}.md'
+    icon: image
+    view:
+      fields: [title, status, price, order]
+      primary: title
+      sort: [order, title, price]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: order
+        label: Sort order
+        type: number
+        default: 99
+        description: Lower numbers show first in the store.
+      - name: featured
+        label: Show on the home page
+        type: boolean
+        default: false
+      - name: status
+        label: Status
+        type: select
+        default: available
+        options:
+          values: [available, sold, reserved, commission, print]
+      - name: category
+        label: Category
+        type: select
+        default: original
+        options:
+          values: [original, print, commission]
+        description: Becomes a filter button on the Art page.
+      - name: price
+        label: Price
+        type: number
+        description: Numbers only — the currency symbol is added for you. Leave empty for "price on enquiry".
+      - name: medium
+        label: Medium
+        type: string
+        description: e.g. Mixed media on canvas
+      - name: dimensions
+        label: Size
+        type: string
+        description: e.g. 60 × 90 cm
+      - name: year
+        label: Year
+        type: number
+      - name: edition
+        label: Edition
+        type: string
+        description: e.g. Original — one of one
+      - name: framed
+        label: Framing
+        type: string
+      - name: blurb
+        label: Short description
+        type: text
+        description: One or two sentences, shown under the title on the artwork page.
+      - name: image
+        label: Main photograph
+        type: image
+        description: Until this is set, the store shows a gradient panel with the piece's initials.
+      - name: alt
+        label: Photograph description
+        type: string
+        description: Describe the artwork for anyone who can't see it.
+      - name: gallery
+        label: Extra photographs
+        type: image
+        list: true
+        description: Detail shots, shown as thumbnails under the main image.
+      - name: buy_url
+        label: Checkout link
+        type: string
+        description: >-
+          A Stripe Payment Link, Etsy listing or similar. Leave empty and the
+          button becomes "Enquire about this piece" instead.
+      - name: body
+        label: About this piece
+        type: rich-text
+
+  # -------------------------------------------------------------------------
+  # Settings
+  # -------------------------------------------------------------------------
+  - name: studio
+    label: Studio & store settings
+    type: file
+    path: _data/studio.yml
+    icon: settings
+    fields:
+      - name: name
+        label: Studio name
+        type: string
+      - name: blurb
+        label: Studio description
+        type: text
+      - name: currency
+        label: Currency code
+        type: string
+      - name: symbol
+        label: Currency symbol
+        type: string
+      - name: enquiry_url
+        label: Enquiry link
+        type: string
+        description: Where "Enquire" buttons go when a piece has no checkout link.
+      - name: shipping_note
+        label: Shipping note
+        type: text
+      - name: sample_notice
+        label: Notice on the Art page
+        type: text
+        description: Leave empty to hide the notice.
+
+  # -------------------------------------------------------------------------
+  # Page titles and descriptions
+  # Page bodies are hand-built layouts, so only the text search engines and
+  # social cards use is editable here.
+  # -------------------------------------------------------------------------
+  - name: page_home
+    label: "Page: Home"
+    type: file
+    path: index.md
+    icon: home
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: description
+        label: Search description
+        type: text
+      - name: body
+        label: Page layout (advanced)
+        type: code
+        options:
+          language: html
+        description: The hand-built HTML for this page. Edit with care.
+
+  - name: page_about
+    label: "Page: About"
+    type: file
+    path: About.md
+    icon: user
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: description
+        label: Search description
+        type: text
+      - name: body
+        label: Page layout (advanced)
+        type: code
+        options:
+          language: html
+        description: The hand-built HTML for this page. Edit with care.
+
+  - name: page_projects
+    label: "Page: Projects"
+    type: file
+    path: Projects.md
+    icon: folder
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: description
+        label: Search description
+        type: text
+      - name: body
+        label: Page layout (advanced)
+        type: code
+        options:
+          language: html
+        description: The hand-built HTML for this page. Edit with care.
+
+  - name: page_art
+    label: "Page: Art store"
+    type: file
+    path: Art.md
+    icon: shopping-bag
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: description
+        label: Search description
+        type: text
+      - name: body
+        label: Page layout (advanced)
+        type: code
+        options:
+          language: html
+        description: The hand-built HTML for this page. Edit with care.
+
+  - name: page_contact
+    label: "Page: Contact"
+    type: file
+    path: Contact.md
+    icon: mail
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: description
+        label: Search description
+        type: text
+      - name: body
+        label: Page layout (advanced)
+        type: code
+        options:
+          language: html
+        description: The hand-built HTML for this page. Edit with care.

@@ -11,9 +11,12 @@
 {%- assign figure_file = site.static_files | where: "path", figure_path | first -%}
 {%- if figure_file -%}
 <figure class="project-figure">
-  <a href="{{ figure_path | relative_url }}">
-    <img src="{{ figure_path | relative_url }}" alt="{{ include.alt }}" loading="lazy" decoding="async">
-  </a>
+  <img src="{{ figure_path | relative_url }}"
+       alt="{{ include.alt }}"
+       loading="lazy"
+       decoding="async"
+       data-zoom
+       data-caption="{{ include.caption | default: include.alt | escape }}">
   {%- if include.caption %}
   <figcaption>{{ include.caption }}</figcaption>
   {%- endif %}
