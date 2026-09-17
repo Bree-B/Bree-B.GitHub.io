@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Projects
+title: GIS Projects
 permalink: /Projects/
 description: >-
   Geospatial work by Breanna Hollinshed - flood modelling on the Onkaparinga
