@@ -1,0 +1,39 @@
+{%- comment -%}
+  Privacy-friendly, cookie-free visitor counting.
+
+  Nothing is emitted unless `analytics.provider` is set in _config.yml, so the
+  site stays script-free until you opt in. Local previews are never counted:
+  Jekyll sets `jekyll.environment` to "development" for `bundle exec jekyll
+  serve` and to "production" for the GitHub Pages build.
+
+  Configure in _config.yml, for example:
+
+    analytics:
+      provider: goatcounter            # goatcounter | plausible | umami | cloudflare
+      site: bree-b                     # goatcounter: your <site>.goatcounter.com code
+      # domain: bree-b.github.io       # plausible: the domain you registered
+      # src: https://cloud.umami.is/script.js   # umami: your instance script URL
+      # website_id: 00000000-0000-...  # umami: the website ID
+      # token: 0000...                 # cloudflare: the beacon token
+{%- endcomment -%}
+{%- if jekyll.environment == "production" and site.analytics and site.analytics.provider -%}
+  {%- assign provider = site.analytics.provider | downcase -%}
+
+  {%- if provider == "goatcounter" and site.analytics.site -%}
+  <script
+    data-goatcounter="https://{{ site.analytics.site }}.goatcounter.com/count"
+    async src="//gc.zgo.at/count.js"></script>
+
+  {%- elsif provider == "plausible" and site.analytics.domain -%}
+  <script defer data-domain="{{ site.analytics.domain }}"
+    src="https://plausible.io/js/script.js"></script>
+
+  {%- elsif provider == "umami" and site.analytics.src and site.analytics.website_id -%}
+  <script defer src="{{ site.analytics.src }}"
+    data-website-id="{{ site.analytics.website_id }}"></script>
+
+  {%- elsif provider == "cloudflare" and site.analytics.token -%}
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "{{ site.analytics.token }}"}'></script>
+  {%- endif -%}
+{%- endif -%}
