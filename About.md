@@ -25,7 +25,7 @@ description: >-
     I came to GIS through the confluence of my passion for data, communication,
     community connection, and art. I'm drawn to projects that help everyday
     people understand why decisions are made the way they are — spatial work
-    that stays connected to community and Country, not locked away in a
+    that stays connected to Community and Country, not locked away in a
     technical report.
   </p>
 
